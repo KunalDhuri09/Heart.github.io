@@ -1,54 +1,278 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Hearts</title>
-    </head>
-    <style>
-        body{
-            background: linear-gradient(-45deg ,#ffe2ed, #a6dee2, #cfc2fc);
-            overflow: hidden;
-        }
-        .heart{
-            height: 200px;
-            width: 200px;
-            background: #e65b64;
-            margin: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            transform: rotate(-45deg);
-            animation: beat 1.5s ease infinite;
-        }
-        .heart::before{
-            content: "";
-            height: 200px;
-            width: 200px;
-            background: #e65b64;
-            border-radius: 50%;
-            position: absolute;
-            top: -100px;
-            left: 0;
-        }
-        .heart::after{
-            content: "";
-            height: 200px;
-            width: 200px;
-            background: #e65b64;
-            border-radius: 50%;
-            position: absolute;
-            top: 0;
-            left: 100px;
-        }
-        @keyframes beat{
-            0%{transform:scale(1) rotate(-45deg) ;}
-            50%{transform: scale(0.5) rotate(-45deg);
-            opacity: 0.6;}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses Flip Cards</title>
 
-        }
-    </style>
-    <body>
-        <div class="heart"></div>
-    </body>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  .flip-card {
+    perspective: 1000px;
+    height: 100%;
+  }
+
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card.active .flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-front,
+  .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+  }
+
+  .flip-back {
+    transform: rotateY(180deg);
+  }
+</style>
+</head>
+
+<body class="bg-orange-50">
+
+<section class="py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4">
+
+    <h2 class="text-center text-2xl sm:text-3xl font-bold mb-12 sm:mb-16">
+      We Have Most of Popular Departments
+    </h2>
+
+    <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+
+      <!-- CARD 1 -->
+      <div class="flip-card h-[380px] sm:h-[420px]">
+        <div class="flip-inner">
+
+          <div class="flip-front bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <img src="./assets/Images/11th.jpg" class="rounded-xl mb-4 sm:mb-6">
+              <h3 class="font-semibold text-lg sm:text-xl mb-2 sm:mb-3">Class 11<sup>th</sup> - Commerce</h3>
+              <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">Build strong basics for CA journey.</p>
+            </div>
+            <button onclick="flip(this)" class="text-orange-500 font-semibold">Learn More →</button>
+          </div>
+
+          <div class="flip-back bg-orange-500 text-white p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold text-lg sm:text-xl mb-4">Course Details</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Accounts, Economics, Maths, SP complete coverage</li>
+                <li>✔ NCERT + Board-focused teaching</li>
+                <li>✔ Weekly practice tests</li>
+                <li>✔ Foundation-level concept building</li>
+              </ul>
+              <h3 class="font-semibold text-lg sm:text-xl mt-4 mb-2">Why Choose Us</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Personal mentoring for every student</li>
+                <li>✔ Regular parent updates</li>
+                <li>✔ Strong base for CA Foundation</li>
+              </ul>
+            </div>
+            <button onclick="flipBack(this)" class="bg-white text-orange-500 px-4 py-2 rounded-lg font-semibold">Back</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="flip-card h-[380px] sm:h-[420px]">
+        <div class="flip-inner">
+
+          <div class="flip-front bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <img src="./assets/Images/12th.jpg" class="rounded-xl mb-4 sm:mb-6">
+              <h3 class="font-semibold text-lg sm:text-xl mb-2 sm:mb-3">Class 12<sup>th</sup> - Commerce</h3>
+              <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">Board + CA preparation together.</p>
+            </div>
+            <button onclick="flip(this)" class="text-orange-500 font-semibold">Learn More →</button>
+          </div>
+
+          <div class="flip-back bg-orange-500 text-white p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold text-lg sm:text-xl mb-4">Course Details</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Full Board syllabus completion</li>
+                <li>✔ Accounts & Maths intensive practice</li>
+                <li>✔ PYQ solving + paper strategy</li>
+                <li>✔ Board exam crash revision</li>
+              </ul>
+              <h3 class="font-semibold text-lg sm:text-xl mt-4 mb-2">Results Focus</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ 90%+ score targeting strategy</li>
+                <li>✔ Daily answer writing practice</li>
+                <li>✔ Time management techniques</li>
+              </ul>
+            </div>
+            <button onclick="flipBack(this)" class="bg-white text-orange-500 px-4 py-2 rounded-lg font-semibold">Back</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="flip-card h-[380px] sm:h-[420px]">
+        <div class="flip-inner">
+
+          <div class="flip-front bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <img src="./assets/Images/CAFoundation.jpg" class="rounded-xl mb-4 sm:mb-6">
+              <h3 class="font-semibold text-lg sm:text-xl mb-2 sm:mb-3">CA Foundation</h3>
+              <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">Start your CA journey strong.</p>
+            </div>
+            <button onclick="flip(this)" class="text-orange-500 font-semibold">Learn More →</button>
+          </div>
+
+          <div class="flip-back bg-orange-500 text-white p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold text-lg sm:text-xl mb-4">Subjects Covered</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Accounts + Law + Maths + Economics</li>
+                <li>✔ ICAI module-based teaching</li>
+                <li>✔ RTP, MTP, PYQ coverage</li>
+              </ul>
+              <h3 class="font-semibold text-lg sm:text-xl mt-4 mb-2">Batch Info</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ June & December attempt batches</li>
+                <li>✔ Fast-track + regular batches</li>
+                <li>✔ Exam-oriented revisions</li>
+              </ul>
+            </div>
+            <button onclick="flipBack(this)" class="bg-white text-orange-500 px-4 py-2 rounded-lg font-semibold">Back</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="flip-card h-[380px] sm:h-[420px]">
+        <div class="flip-inner">
+
+          <div class="flip-front bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <img src="./assets/Images/CAInter.jpg" class="rounded-xl mb-4 sm:mb-6">
+              <h3 class="font-semibold text-lg sm:text-xl mb-2 sm:mb-3">CA Intermediate</h3>
+              <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">Concept clarity + practical knowledge.</p>
+            </div>
+            <button onclick="flip(this)" class="text-orange-500 font-semibold">Learn More →</button>
+          </div>
+
+          <div class="flip-back bg-orange-500 text-white p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold text-lg sm:text-xl mb-4">Course Coverage</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Group 1 & Group 2 subjects</li>
+                <li>✔ Tax + Audit deep concepts</li>
+                <li>✔ Case study-based learning</li>
+              </ul>
+              <h3 class="font-semibold text-lg sm:text-xl mt-4 mb-2">Support</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Test series + evaluation</li>
+                <li>✔ Answer writing practice</li>
+                <li>✔ Doubt solving sessions</li>
+              </ul>
+            </div>
+            <button onclick="flipBack(this)" class="bg-white text-orange-500 px-4 py-2 rounded-lg font-semibold">Back</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="flip-card h-[380px] sm:h-[420px]">
+        <div class="flip-inner">
+
+          <div class="flip-front bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <img src="./assets/Images/CAFinal.jpg" class="rounded-xl mb-4 sm:mb-6">
+              <h3 class="font-semibold text-lg sm:text-xl mb-2 sm:mb-3">CA Final</h3>
+              <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">Master advanced CA concepts.</p>
+            </div>
+            <button onclick="flip(this)" class="text-orange-500 font-semibold">Learn More →</button>
+          </div>
+
+          <div class="flip-back bg-orange-500 text-white p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold text-lg sm:text-xl mb-4">Advanced Prep</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ FR, Audit, Strategic Finance</li>
+                <li>✔ Case laws & practical exposure</li>
+                <li>✔ ICAI-level question solving</li>
+              </ul>
+              <h3 class="font-semibold text-lg sm:text-xl mt-4 mb-2">Exam Strategy</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ Ranker-level guidance</li>
+                <li>✔ Revision planning system</li>
+                <li>✔ Mock exams under real conditions</li>
+              </ul>
+            </div>
+            <button onclick="flipBack(this)" class="bg-white text-orange-500 px-4 py-2 rounded-lg font-semibold">Back</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="flip-card h-[380px] sm:h-[420px]">
+        <div class="flip-inner">
+
+          <div class="flip-front bg-white shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <img src="./assets/Images/Library.jpg" class="rounded-xl mb-4 sm:mb-6">
+              <h3 class="font-semibold text-lg sm:text-xl mb-2 sm:mb-3">Library Services</h3>
+              <p class="text-gray-600 text-sm sm:text-base mb-4 sm:mb-6">Quiet & focused study environment.</p>
+            </div>
+            <button onclick="flip(this)" class="text-orange-500 font-semibold">Learn More →</button>
+          </div>
+
+          <div class="flip-back bg-orange-500 text-white p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold text-lg sm:text-xl mb-4">Facilities</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ AC & silent study zones</li>
+                <li>✔ High-speed WiFi</li>
+                <li>✔ Individual seating</li>
+              </ul>
+              <h3 class="font-semibold text-lg sm:text-xl mt-4 mb-2">Best For</h3>
+              <ul class="text-sm space-y-2">
+                <li>✔ CA / Commerce students</li>
+                <li>✔ Long study hours</li>
+                <li>✔ Distraction-free environment</li>
+              </ul>
+            </div>
+            <button onclick="flipBack(this)" class="bg-white text-orange-500 px-4 py-2 rounded-lg font-semibold">Back</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+function flip(btn) {
+  document.querySelectorAll('.flip-card').forEach(card => card.classList.remove('active'));
+  btn.closest('.flip-card').classList.add('active');
+}
+
+function flipBack(btn) {
+  btn.closest('.flip-card').classList.remove('active');
+}
+</script>
+
+</body>
 </html>
